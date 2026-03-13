@@ -1,37 +1,75 @@
+import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import MapHomeScreen from '../screens/map/map/MapHomeScreen';
-import FeedListScreen from '../screens/map/feed/FeedListScreen';
-import CalendarScreen from '../screens/map/calendar/CalendarScreen';
 import {createStaticNavigation} from '@react-navigation/native';
-import {MapStack} from './MapNavigation';
-import {FeedStack} from './FeedNavigation';
+import CustomDrawerContent from '../components/CustomDrawerContent';
 import DrawerButton from '../components/DrawerButton';
 import {colors} from '../constants/colors';
-import CustomDrawerContent from '../components/CustomDrawerContent';
+import CalendarScreen from '../screens/map/calendar/CalendarScreen';
+import {MainDrawerParamList} from '../types/navigaions';
+import {FeedStack} from './FeedNavigation';
+import {MapStack} from './MapNavigation';
+
+type DrawerIconName = 'map' | 'book' | 'calendar';
+
+function DrawerIcons(routeName: keyof MainDrawerParamList, focused: boolean) {
+  let iconName: DrawerIconName;
+
+  switch (routeName) {
+    case 'Map': {
+      iconName = 'map';
+      break;
+    }
+
+    case 'Feed': {
+      iconName = 'book';
+      break;
+    }
+    case 'Calendar': {
+      iconName = 'calendar';
+      break;
+    }
+  }
+
+  return (
+    <FontAwesome6
+      name={iconName}
+      iconStyle="solid"
+      size={20}
+      color={focused ? colors.WHITE : colors.GRAY_300}
+    />
+  );
+}
 
 const MainDrawer = createDrawerNavigator({
-  screenOptions: {
-    drawerStyle: {
-      width: '60%',
-      backgroundColor: 'white',
-    },
-    drawerLabelStyle: {
-      fontWeight: '600',
-    },
-    drawerItemStyle: {
-      borderRadius: 5,
-    },
-    drawerType: 'front',
-    drawerActiveTintColor: colors.WHITE,
-    drawerActiveBackgroundColor: colors.PINK_700,
-    drawerInactiveTintColor: colors.GRAY_500,
-    drawerInactiveBackgroundColor: colors.GRAY_100,
-    headerTitleAlign: 'center',
-    headerBackButtonDisplayMode: 'minimal',
-    headerTintColor: colors.BLACK,
-    headerStyle: {backgroundColor: colors.WHITE, shadowColor: colors.GRAY_500},
-    headerTitleStyle: {fontSize: 16},
-    cardStyle: {backgroundColor: colors.WHITE},
+  screenOptions: ({route}) => {
+    return {
+      drawerStyle: {
+        width: '60%',
+        backgroundColor: 'white',
+      },
+      drawerLabelStyle: {
+        fontWeight: '600',
+      },
+      drawerItemStyle: {
+        borderRadius: 5,
+      },
+      drawerType: 'front',
+      drawerActiveTintColor: colors.WHITE,
+      drawerActiveBackgroundColor: colors.PINK_700,
+      drawerInactiveTintColor: colors.GRAY_500,
+      drawerInactiveBackgroundColor: colors.GRAY_100,
+      drawerIcon: ({focused}) =>
+        DrawerIcons(route.name as keyof MainDrawerParamList, focused),
+      headerTitleAlign: 'center',
+      headerBackButtonDisplayMode: 'minimal',
+      headerTintColor: colors.BLACK,
+      headerStyle: {
+        backgroundColor: colors.WHITE,
+        shadowColor: colors.GRAY_500,
+      },
+      headerTitleStyle: {fontSize: 16},
+      cardStyle: {backgroundColor: colors.WHITE},
+    };
   },
   screens: {
     Map: {
