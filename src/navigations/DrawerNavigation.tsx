@@ -1,13 +1,13 @@
 import FontAwesome6 from '@react-native-vector-icons/fontawesome6';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStaticNavigation} from '@react-navigation/native';
-import CustomDrawerContent from '../components/CustomDrawerContent';
-import DrawerButton from '../components/DrawerButton';
-import {colors} from '../constants/colors';
-import CalendarScreen from '../screens/map/calendar/CalendarScreen';
-import {MainDrawerParamList} from '../types/navigaions';
+import CustomDrawerContent from '@/components/CustomDrawerContent';
+import DrawerButton from '@/components/DrawerButton';
+import CalendarScreen from '@/screens/map/calendar/CalendarScreen';
+import {MainDrawerParamList} from '@/types/navigaions';
 import {FeedStack} from './FeedNavigation';
 import {MapStack} from './MapNavigation';
+import {colors} from '@/constants/colors';
 
 type DrawerIconName = 'map' | 'book' | 'calendar';
 

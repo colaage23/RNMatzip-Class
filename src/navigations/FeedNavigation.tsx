@@ -1,10 +1,10 @@
 import {createStackNavigator} from '@react-navigation/stack';
-import FeedListScreen from '../screens/map/feed/FeedListScreen';
-import FeedDetailScreen from '../screens/map/feed/FeedDetailScreen';
-import FeedFavoriteScreen from '../screens/map/feed/FeedFavoriteScreen';
-import EditLocationScreen from '../screens/map/feed/EditLocationScreen';
-import {colors} from '../constants/colors';
-import DrawerButton from '../components/DrawerButton';
+import FeedListScreen from '@/screens/map/feed/FeedListScreen';
+import FeedDetailScreen from '@/screens/map/feed/FeedDetailScreen';
+import FeedFavoriteScreen from '@/screens/map/feed/FeedFavoriteScreen';
+import EditLocationScreen from '@/screens/map/feed/EditLocationScreen';
+import {colors} from '@/constants/colors';
+import DrawerButton from '@/components/DrawerButton';
 
 export const FeedStack = createStackNavigator({
   screenOptions: {
